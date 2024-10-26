@@ -1,0 +1,46 @@
+{
+  "name": "@ain1084/array-buffer-partitioner",
+  "version": "0.0.1",
+  "description": "Partition an ArrayBuffer into multiple TypedArray views efficiently.",
+  "module": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "tsc",
+    "clean": "rm -rf dist docs",
+    "prepublishOnly": "npm run clean && npm run build",
+    "test": "jest",
+    "test:watch": "jest --watch",
+    "docs": "typedoc"
+  },
+  "files": [
+    "dist",
+    "src",
+    "LICENSE",
+    "README.md"
+  ],
+  "keywords": [
+    "ArrayBuffer",
+    "TypedArray",
+    "partition",
+    "allocator",
+    "buffer",
+    "views"
+  ],
+  "author": "Seiji Ainoguchi <seiji.ainoguchi@gmail.com>",
+  "license": "(MIT OR Apache-2.0)",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ain1084/array-buffer-partitioner.git"
+  },
+  "bugs": {
+    "url": "https://github.com/ain1084/array-buffer-partitioner/issues"
+  },
+  "homepage": "https://github.com/ain1084/array-buffer-partitioner#readme",
+  "devDependencies": {
+    "@types/jest": "^29.5.14",
+    "jest": "^29.0.0",
+    "ts-jest": "^29.2.5",
+    "typedoc": "^0.26.10",
+    "typescript": "^5.6.3"
+  }
+}
