@@ -48,7 +48,7 @@ console.log(views.data.buffer.byteLength); // 4104
 
 ## API
 
-### `createArrayBufferViews`
+### `createArrayBufferViews(BufferType: { new(size: number): ArrayBuffer | SharedArrayBuffer }, config: Record<string, [TypedArrayConstructor, number]>)`
 
 Creates multiple `TypedArray` views on a single `ArrayBuffer` or `SharedArrayBuffer`.
 
