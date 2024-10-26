@@ -1,7 +1,7 @@
 # @ain1084/array-buffer-partitioner
 
 [![npm version](https://badge.fury.io/js/@ain1084%2Farray-buffer-partitioner.svg)](https://badge.fury.io/js/@ain1084%2Farray-buffer-partitioner)
-[![CI](https://github.com/ain1084/array-buffer-partitioner/workflows/ci/badge.svg)](https://github.com/ain1084/array-buffer-partitioner/actions?query=workflow%3Aci)
+[![CI](https://github.com/ain1084/array-buffer-partitioner/actions/workflows/ci.yml/badge.svg)](https://github.com/ain1084/array-buffer-partitioner/actions?query=workflow%3Aci)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![License](https://img.shields.io/badge/License-Apache_2.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
 
