@@ -30,50 +30,54 @@
  * ```
  */
 export function createArrayBufferViews<T extends Record<string, [ArrayTypeConstructor<SupportedArrays>, number]>>(
-    BufferType: { new(size: number): ArrayBuffer },
-    config: T
-): { 
-    [K in keyof T]: InstanceType<T[K][0]> 
-} {
-    const totalSize = (Object.values(config) as ArrayView[])
-        .reduce((sum, [type, size]) => 
-            sum + (type.BYTES_PER_ELEMENT * size), 
-            0
-        );
+  BufferType: { new(size: number): ArrayBuffer },
+  config: T
+): {
+    [K in keyof T]: InstanceType<T[K][0]>
+  } {
+  const alignTo = (value: number, alignment: number) =>
+    (value + alignment - 1) & ~(alignment - 1);
 
-    // Create an instance of the specified buffer type with the calculated total size
-    const buffer = new BufferType(totalSize);
+  let totalSize = 0;
 
-    const result = {} as { [K in keyof T]: InstanceType<T[K][0]> };
+  for (const [, [type, size]] of Object.entries(config) as Array<[string, ArrayView]>) {
+    const alignment = type.BYTES_PER_ELEMENT;
+    totalSize = alignTo(totalSize, alignment) + (alignment * size);
+  }
 
-    let offset = 0;
+  const buffer = new BufferType(totalSize);
+  const result = {} as { [K in keyof T]: InstanceType<T[K][0]> };
 
-    for (const key in config) {
-        const [type, size] = config[key];
-        result[key] = new type(buffer, offset, size) as InstanceType<T[typeof key][0]>;
-        offset += type.BYTES_PER_ELEMENT * size;
-    }
+  let offset = 0;
 
-    return result;
+  for (const key in config) {
+    const [type, size] = config[key];
+    const alignment = type.BYTES_PER_ELEMENT;
+    offset = alignTo(offset, alignment);
+    result[key] = new type(buffer, offset, size) as InstanceType<T[typeof key][0]>;
+    offset += alignment * size;
+  }
+
+  return result;
 }
 
 /**
  * Represents the constructor for supported TypedArray types.
  * @internal
  */
-type ArrayTypeConstructor<R> = { 
-    new(buffer: ArrayBuffer, byteOffset: number, length: number): R;
-    BYTES_PER_ELEMENT: number;
+type ArrayTypeConstructor<R> = {
+  new(buffer: ArrayBuffer, byteOffset: number, length: number): R;
+  BYTES_PER_ELEMENT: number;
 };
 
 /**
  * Lists the supported TypedArray types.
  * @internal
  */
-type SupportedArrays = 
-    Float32Array | Uint32Array | Uint8Array | 
-    Int32Array | Int16Array | Uint16Array | 
-    Float64Array | BigInt64Array | BigUint64Array;
+type SupportedArrays =
+  Float32Array | Uint32Array | Uint8Array |
+  Int32Array | Int16Array | Uint16Array |
+  Float64Array | BigInt64Array | BigUint64Array;
 
 /**
  * Represents the configuration for creating TypedArray views.
