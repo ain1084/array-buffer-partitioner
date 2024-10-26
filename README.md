@@ -1,4 +1,4 @@
-# @ain1084/array-buffer-partitioner
+# Array Buffer Partitioner
 
 [![npm version](https://badge.fury.io/js/@ain1084%2Farray-buffer-partitioner.svg)](https://badge.fury.io/js/@ain1084%2Farray-buffer-partitioner)
 [![CI](https://github.com/ain1084/array-buffer-partitioner/actions/workflows/ci.yml/badge.svg)](https://github.com/ain1084/array-buffer-partitioner/actions?query=workflow%3Aci)
@@ -9,20 +9,19 @@ Partition an ArrayBuffer into multiple TypedArray views efficiently, while handl
 
 ## Overview
 
-`@ain1084/array-buffer-partitioner` is a utility library designed to create multiple `TypedArray` views on a single `ArrayBuffer` or `SharedArrayBuffer`. This can be particularly useful when dealing with various data types that need to coexist within a single buffer, without manually calculating offsets and ensuring correct alignment.
+`@ain1084/array-buffer-partitioner` is a utility library for creating multiple TypedArray views on a single `ArrayBuffer` or `SharedArrayBuffer`. This allows various data types to be efficiently placed within a single buffer. The library automatically adjusts each TypedArray’s byteOffset to prevent errors that can occur during view creation.
 
 ### Features
 
 - Create multiple `TypedArray` views from a single `ArrayBuffer` or `SharedArrayBuffer`.
 - Efficient memory partitioning without manual offset calculations.
-- Future-proof: planned support for alignment adjustment to optimize memory access performance.
 
 ## Installation
 
 Install the library via npm:
 
 ```sh
-npm install @ain1084/array-buffer-partitioner
+npm i @ain1084/array-buffer-partitioner
 ```
 
 ## Usage
@@ -62,10 +61,6 @@ Creates multiple `TypedArray` views on a single `ArrayBuffer` or `SharedArrayBuf
 #### Returns
 
 An object containing the views, with each key corresponding to the provided configuration.
-
-## Future Plans
-
-- **Alignment Support**: Future versions will include alignment support to ensure efficient access patterns, especially when working with mixed data types like `Float32Array` and `Uint8Array`. This will improve the performance of memory access and help avoid inefficient alignments.
 
 ## Contributing
 
