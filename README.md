@@ -47,6 +47,8 @@ console.log(views.data.buffer.byteLength); // 4104
 
 ## API
 
+For detailed API documentation, please refer to the [GitHub Pages](https://ain1084.github.io/array-buffer-partitioner/) documentation.
+
 ### `createArrayBufferViews(BufferType: { new(size: number): ArrayBuffer | SharedArrayBuffer }, config: Record<string, [TypedArrayConstructor, number]>)`
 
 Creates multiple `TypedArray` views on a single `ArrayBuffer` or `SharedArrayBuffer`.
