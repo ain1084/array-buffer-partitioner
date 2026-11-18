@@ -30,7 +30,7 @@
  * ```
  */
 export function createArrayBufferViews<T extends Record<string, [ArrayTypeConstructor<SupportedArrays>, number]>>(
-  BufferType: { new(size: number): ArrayBuffer },
+  BufferType: { new(size: number): ArrayBufferLike },
   config: T
 ): {
     [K in keyof T]: InstanceType<T[K][0]>
@@ -66,7 +66,7 @@ export function createArrayBufferViews<T extends Record<string, [ArrayTypeConstr
  * @internal
  */
 type ArrayTypeConstructor<R> = {
-  new(buffer: ArrayBuffer, byteOffset: number, length: number): R;
+  new(buffer: ArrayBufferLike, byteOffset: number, length: number): R;
   BYTES_PER_ELEMENT: number;
 };
 
